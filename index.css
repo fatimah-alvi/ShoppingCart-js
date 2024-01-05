@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Oswald:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+#firstdiv {
+    position: relative;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+#maindiv {
+    position: relative;
+    height: 100%;
+    width: 135%;
+    display: flex;
+}
+
+.container {
+    height: 100%;
+    width: 100vw;
+    background-color: #fff;
+    align-content: space-evenly;    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.store {
+    width: 35vw;
+    position: fixed;
+    margin-left: 100vw;
+    background-color: #fff;
+    z-index: 10;
+    height: calc(100vh - 0vh);
+    overflow: auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition-duration: 1s;
+}
+
+.container div {
+    margin-top: 9vh;
+    min-height: 75vh;
+    width: 24vw;
+    
+    /* width: 45%; Display two products per row */
+    /* margin: 20px; */
+    margin-left: 2vw;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px 0px;
+}
+
+.container div img {
+    height: 45vh;
+    width: 80%;
+    background-color: transparent;
+    margin: 0 auto;
+}
+
+.container h1 {
+    font-size: 25px;
+    margin-top: 3vh;
+    text-align: center;
+}
+
+.container h3,
+p,
+button {
+    margin-top: 1vh;
+}
+
+.container h3 {
+    font-size: 20px;
+}
+
+.container p,
+h1,
+button {
+    font-family: dancing script;
+}
+
+.container button {
+    position: relative;
+    padding: 12px 40px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    transition-duration: 1s;
+}
+
+.container button:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    font-size: 20px;
+    transition-duration: 1s;
+}
+
+.container p {
+    font-size: 20px;
+}
+
+.container #main {
+    height: 7vh;
+    width: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: fixed;
+    top: 2vh;
+    left: 96%;
+    border: 2px solid black;
+    z-index: 100;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 1s;
+    font-size: 25px;
+}
+
+#main i {
+    margin-left: -3px;
+}
+
+#main:hover {
+    background-color: black;
+    color: white;
+    transition-duration: 1s;
+}
+
+#heading {
+    height: 13vh;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+#maindiv1 {
+    min-height: 5vh;
+    width: 100%;
+}
+
+#btnsmain {
+    height: 55px;
+    width: 30vw;
+    position: fixed;
+    top: 5vh;
+    margin-left: 1.8vw;
+    margin-top: 82vh;
+    /* border: 5px solid red; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#btnsmain button {
+    height: 100%;
+    width: 45%;
+    background-color: black;
+    cursor: pointer;
+    color: white;
+    font-size: 30px;
+}
+
+.hidden {
+    transform: translateX(-35vw);
+    transition-duration: 1s;
+}
+
+#para img {
+    height: 96%;
+    width: 40%;
+}
+
+#para {
+    display: flex;
+    height: 24vh;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.para {
+    height: 100%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.check3 {
+    font-family: dancing script;
+    font-weight: bold;
+    font-size: 30px;
+    display: inline;
+    text-align: center;
+}
+
+.check3 span {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.removebtns {
+    height: 5vh;
+    width: 170px;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+}
+
+.removebtns button {
+    background-color: transparent;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#removebtn {
+    width: 100px;
+}
+
+#incbtn,
+#decbtn {
+    width: 25px;
+}

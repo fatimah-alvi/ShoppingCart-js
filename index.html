@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./responsive.css">
+    <link rel="stylesheet" href="./index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/687ba78eae.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="firstdiv">
+        <div id="maindiv">
+            <div class="container" id="container">
+                <section id="main" class="table">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </section>
+            </div>
+            <div class="store">
+                <div id="heading">
+                    <h2 style="font-family: dancing script;">Cart Summary</h2>
+                </div>
+                <div id="maindiv1"></div>
+                <div id="btnsmain">
+                    <button class="clearcart" id="clearButton">Clear Cart</button>
+                    <button id="confirm">Confirm Items</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+
+    let container = document.getElementById("container")
+    let table = document.querySelector('.table')
+    let store = document.querySelector('.store')
+    let maindiv = document.getElementById("maindiv1")
+    let clearButton = document.getElementById("clearButton")
+    let confirmButton = document.getElementById("confirm")
+    table.addEventListener('click', () => {
+        console.log("test");
+        store.classList.toggle("hidden")
+        container.style.width = "60vw"
+    })
+    table.addEventListener('dblclick', () => {
+        container.style.width = "100vw"
+    })
+
+
+    var cont = document.querySelector('.container')
+    fetch('https://fakestoreapi.com/products').then(res => res.json())
+        .then(data => {
+            localStorage.setItem('products', JSON.stringify(data));
+            mydata(data)
+        })
+    function mydata(data) {
+        data.forEach((ele, index) => {
+            // console.log(ele,"==>test");
+            var div = document.createElement('div')
+            div.innerHTML = `<img src=${ele.image} />
+        <h1>${ele.title}</h1>
+        <h3>Price : $${ele.price}</h3>
+        <p>${ele.category}</p>
+       <button onclick="handleCart(${ele.id})" class="btns">Add to Cart </button>
+        `
+            cont.appendChild(div)
+        });
+    }
+
+    function handleCart(id) {
+        console.log(id, "==>cart");
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        //   console.log(cart);
+        const existingItem = cart.find(item => item.id === id);
+        console.log(existingItem, "==>test");
+        if (existingItem) {
+            existingItem.quantity++;
+        }
+        else {
+            cart.push({ id, quantity: 1 });
+        }
+        console.log(cart);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        displayCart()
+    }
+
+    function displayCart() {
+        console.log("displayCart");
+        let maindiv = document.getElementById("maindiv1")
+        maindiv.innerHTML = ""
+        let product = JSON.parse(localStorage.getItem('products'))
+        let cart = JSON.parse(localStorage.getItem('cart'))
+        cart.map((ele) => {
+            var matchProduct = product.find(product => product.id === ele.id)
+            console.log(matchProduct, "==>check");
+            maindiv.innerHTML += `
+            <div id="para">
+                    <img src="${matchProduct.image}" alt="">
+                    <div class="para">
+                        <p class="check1 check3">Price: $<span class="total">${matchProduct.price}</span></p>
+                        <p class="check2 check3">Qnt: <span class="total">${ele.quantity}</span></p>
+                        <div class="removebtns">
+                            <button id="decbtn" onclick="decrement(${matchProduct.id})">-</button>
+                            <button id="removebtn" onclick="removeItem(${matchProduct.id})">Remove</button>
+                            <button id="incbtn" onclick="increment(${matchProduct.id})">+</button>
+                        </div>
+                    </div>
+            </div>
+            `
+        })
+    }
+
+    function increment(id) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let cartItem = cart.find(item => item.id === id);
+        if (cartItem) {
+            cartItem.quantity++;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        }
+    }
+
+    function decrement(id) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let cartItem = cart.find(item => item.id === id);
+        if (cartItem) {
+            cartItem.quantity--;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        }
+    }
+
+    function removeItem(id) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartIndex = cart.findIndex(item => item.id === id);
+        if (cartIndex !== -1) {
+            cart.splice(cartIndex, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        }
+    }
+
+    confirmButton.addEventListener('click', () => {
+        alert(`Order Place`)
+        localStorage.removeItem('cart');
+        localStorage.removeItem('products');
+        maindiv.innerHTML = ""
+    })
+
+    clearButton.addEventListener('click', () => {
+        // alert(`dgfchjk`)
+        localStorage.removeItem('cart');
+        localStorage.removeItem('products');
+        maindiv.innerHTML = ""
+    });
+
+    displayCart()
+
+</script>
+
+</html>
